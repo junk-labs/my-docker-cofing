@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 
 services:
   feed:
@@ -12,7 +12,9 @@ services:
     networks:
       external-network: 
         ipv4_address: 192.168.100.222
-
+    cap_add:
+      - NET_ADMIN
+    restart: always
 networks:
     external-network:
       external: true
