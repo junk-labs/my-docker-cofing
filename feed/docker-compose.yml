@@ -1,0 +1,18 @@
+version: "2"
+
+services:
+  feed:
+    image: "heussd/fivefilters-full-text-rss:latest"
+    hostname: feed
+    environment:
+      # Leave empty to disable admin section
+      - FTR_ADMIN_PASSWORD=
+    volumes:
+      - ./rss-cache:/var/www/html/cache
+    networks:
+      external-network: 
+        ipv4_address: 192.168.100.222
+
+networks:
+    external-network:
+      external: true
