@@ -1,0 +1,15 @@
+[Unit]
+Description=%i managed by docker-compose
+Requires=snap.docker.dockerd.service
+
+[Service]
+Type=simple
+
+Environment=COMPOSE_FILE=/root/docker/%i/docker-compose.yml
+
+ExecStartPre=-/snap/bin/docker-compose -f ${COMPOSE_FILE} down --volumes
+ExecStart=/snap/bin/docker-compose -f ${COMPOSE_FILE} up
+ExecStop=/snap/bin/docker-compose -f ${COMPOSE_FILE} down --volumes 
+
+[Install]
+WantedBy=multi-user.target
