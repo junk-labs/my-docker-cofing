@@ -5,6 +5,7 @@ services:
     image: "heussd/fivefilters-full-text-rss:latest"
     hostname: feed
     environment:
+      - TZ: 'Asia/Tokyo'
       # Leave empty to disable admin section
       - FTR_ADMIN_PASSWORD=
     volumes:

@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  pihole:
+    image: pihole/pihole:latest
+    hostname: pi1
+    environment:
+      - TZ='Asia/Tokyo'
+#      - WEBPASSWORD='set a secure password here or it will be random'
+    volumes:
+      - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    networks:
+      external-network: 
+        ipv4_address: 192.168.100.210
+    cap_add:
+      - NET_ADMIN
+    restart: always
+networks:
+    external-network:
+      external: true
