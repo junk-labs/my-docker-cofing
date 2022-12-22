@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  dashy:
+    image: "lissy93/dashy:latest"
+    hostname: www
+    environment:
+      - TZ='Asia/Tokyo'
+      - NODE_ENV=production
+    volumes:
+      - ./dashy-root:/app/public/
+    networks:
+      external-network: 
+        ipv4_address: 192.168.100.224
+    restart: always
+
+    # Configure healthchecks
+    healthcheck:
+      test: ['CMD', 'node', '/app/services/healthcheck']
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+    external-network:
+      external: true
