@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  webserver:
+    image: "webdevops/php-nginx:7.4-alpine"
+    hostname: php7
+    dns:
+      - 192.168.100.200
+      - 192.168.100.201
+    environment:
+      - TZ=Asia/Tokyo
+      - PHP_DATE_TIMEZONE=Asia/Tokyo
+    volumes:
+      - ./wwwroot:/app
+    networks:
+      external-network: 
+        ipv4_address: 192.168.100.225
+    restart: always
+
+networks:
+    external-network:
+      external: true
