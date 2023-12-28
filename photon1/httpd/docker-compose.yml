@@ -6,6 +6,7 @@ services:
     environment:
       - TZ='Asia/Tokyo'
     volumes:
+      - ./nginx/passwd:/etc/passwd:ro
       - ./nginx/conf:/etc/nginx
       - ./nginx/log:/var/log/nginx
     ports:
